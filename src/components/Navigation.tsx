@@ -22,7 +22,9 @@ import {
     IoVolumeHighOutline,
     IoVolumeMuteOutline,
     IoLogOutOutline,
-    IoLanguageOutline
+    IoLanguageOutline,
+    IoMedalOutline,
+    IoWalletOutline
 } from "react-icons/io5";
 import { useAudio } from "./AudioProvider";
 import { useAuth } from "./AuthProvider";
@@ -90,6 +92,26 @@ export default function Navigation() {
                             </div>
                         </div>
                     </Link>
+                </div>
+
+                {/* Gamification Stats */}
+                <div style={{ padding: "0 24px", marginBottom: "24px" }}>
+                    <div style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.05)", borderRadius: "8px", padding: "12px", display: "flex", justifyContent: "space-between" }}>
+                        <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                            <IoMedalOutline size={16} color="#ff6b00" />
+                            <div>
+                                <div style={{ fontSize: "9px", color: "#888", textTransform: "uppercase" }}>Rank</div>
+                                <div style={{ fontSize: "12px", fontWeight: "700", color: "white" }}>{user.rank || "Novice"}</div>
+                            </div>
+                        </div>
+                        <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                            <IoWalletOutline size={16} color="#00c853" />
+                            <div>
+                                <div style={{ fontSize: "9px", color: "#888", textTransform: "uppercase" }}>UZS</div>
+                                <div style={{ fontSize: "12px", fontWeight: "700", color: "#00c853" }}>{user.uzsBalance || 0}</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 {/* Nav Items */}

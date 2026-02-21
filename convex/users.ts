@@ -34,7 +34,35 @@ export const create = mutation({
             .withIndex("by_email", (q) => q.eq("email", args.email))
             .first();
 
+        const today = new Date().toISOString().split("T")[0];
+
         if (existing) {
+            // Update login streak logic
+            const lastLogin = existing.lastLoginDate;
+            let streak = existing.loginStreak || 0;
+            let balance = existing.uzsBalance || 0;
+
+            if (lastLogin !== today) {
+                const yesterday = new Date();
+                yesterday.setDate(yesterday.getDate() - 1);
+                const yesterdayStr = yesterday.toISOString().split("T")[0];
+
+                if (lastLogin === yesterdayStr) {
+                    streak += 1;
+                    if (streak === 1) balance += 50; // Day 1 reward
+                    // Future: Day 3, Day 7 rewards logic
+                } else {
+                    streak = 1; // Reset streak
+                    balance += 50; // Day 1 reward
+                }
+
+                await ctx.db.patch(existing._id, {
+                    lastLoginDate: today,
+                    loginStreak: streak,
+                    uzsBalance: balance,
+                });
+            }
+
             return existing._id;
         }
 
@@ -45,6 +73,17 @@ export const create = mutation({
             isPremium: false,
             audioEnabled: true,
             theme: "dark",
+            uzsBalance: 50, // Initial bonus
+            rank: "Novice",
+            loginStreak: 1,
+            lastLoginDate: today,
+            skillPoints: {
+                aim: 0,
+                spray: 0,
+                movement: 0,
+                utility: 0,
+                gameSense: 0,
+            }
         });
     },
 });
@@ -73,6 +112,29 @@ export const updateProfile = mutation({
         );
         await ctx.db.patch(userId, filtered);
     },
+});
+
+// Update Gamification stats (Skills, Rank, UZS)
+export const updateGamification = mutation({
+    args: {
+        userId: v.id("users"),
+        uzsBalance: v.optional(v.number()),
+        rank: v.optional(v.string()),
+        skillPoints: v.optional(v.object({
+            aim: v.number(),
+            spray: v.number(),
+            movement: v.number(),
+            utility: v.number(),
+            gameSense: v.number(),
+        })),
+    },
+    handler: async (ctx, args) => {
+        const { userId, ...updates } = args;
+        const filtered = Object.fromEntries(
+            Object.entries(updates).filter(([, v]) => v !== undefined)
+        );
+        await ctx.db.patch(userId, filtered);
+    }
 });
 
 // Upgrade to premium
@@ -105,7 +167,33 @@ export const login = mutation({
             .withIndex("by_email", (q) => q.eq("email", args.email))
             .first();
 
+        const today = new Date().toISOString().split("T")[0];
+
         if (existing) {
+            // Update login streak logic
+            const lastLogin = existing.lastLoginDate;
+            let streak = existing.loginStreak || 0;
+            let balance = existing.uzsBalance || 0;
+
+            if (lastLogin !== today) {
+                const yesterday = new Date();
+                yesterday.setDate(yesterday.getDate() - 1);
+                const yesterdayStr = yesterday.toISOString().split("T")[0];
+
+                if (lastLogin === yesterdayStr) {
+                    streak += 1;
+                    if (streak === 1) balance += 50; // Day 1 reward
+                } else {
+                    streak = 1; // Reset streak
+                    balance += 50; // Day 1 reward
+                }
+
+                await ctx.db.patch(existing._id, {
+                    lastLoginDate: today,
+                    loginStreak: streak,
+                    uzsBalance: balance,
+                });
+            }
             return existing._id;
         }
 
@@ -115,6 +203,17 @@ export const login = mutation({
             isPremium: false,
             audioEnabled: true,
             theme: "dark",
+            uzsBalance: 50,
+            rank: "Novice",
+            loginStreak: 1,
+            lastLoginDate: today,
+            skillPoints: {
+                aim: 0,
+                spray: 0,
+                movement: 0,
+                utility: 0,
+                gameSense: 0,
+            }
         });
     },
 });

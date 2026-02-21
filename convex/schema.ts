@@ -30,6 +30,21 @@ export default defineSchema({
     // Preferences
     audioEnabled: v.optional(v.boolean()),
     theme: v.optional(v.string()),
+
+    // Gamification & Progression (Phase 7)
+    uzsBalance: v.optional(v.number()),
+    rank: v.optional(v.string()), // "Novice", "Soldier", "Veteran", "Master", "Legend"
+    loginStreak: v.optional(v.number()),
+    lastLoginDate: v.optional(v.string()), // YYYY-MM-DD to track daily streaks
+    skillPoints: v.optional(
+      v.object({
+        aim: v.number(),
+        spray: v.number(),
+        movement: v.number(),
+        utility: v.number(),
+        gameSense: v.number(),
+      })
+    ),
   })
     .index("by_email", ["email"])
     .index("by_steamId", ["steamId"])
