@@ -21,12 +21,12 @@ interface AudioContextType {
 
 const AudioContext = createContext<AudioContextType>({
   isEnabled: true,
-  toggle: () => {},
-  playClick: () => {},
-  playReload: () => {},
-  playHit: () => {},
-  playVictory: () => {},
-  playError: () => {},
+  toggle: () => { },
+  playClick: () => { },
+  playReload: () => { },
+  playHit: () => { },
+  playVictory: () => { },
+  playError: () => { },
 });
 
 export const useAudio = () => useContext(AudioContext);
@@ -103,30 +103,48 @@ export function AudioProvider({ children }: { children: React.ReactNode }) {
   );
 
   const playClick = useCallback(() => {
-    playTone(800, 0.08, "square", 0.08);
-    setTimeout(() => playTone(600, 0.05, "square", 0.05), 20);
+    // Snappy CS2 UI hover/click
+    playTone(1200, 0.03, "sine", 0.15);
+    playTone(2000, 0.02, "triangle", 0.1);
   }, [playTone]);
 
   const playReload = useCallback(() => {
-    playTone(200, 0.15, "sawtooth", 0.1);
-    setTimeout(() => playTone(400, 0.2, "sawtooth", 0.08), 150);
-    setTimeout(() => playTone(300, 0.15, "sawtooth", 0.06), 350);
+    // Structural clack of a weapon reload
+    playTone(150, 0.1, "square", 0.08); // Mag out
+    setTimeout(() => {
+      // Mag in
+      playTone(200, 0.05, "square", 0.1);
+      playTone(800, 0.05, "triangle", 0.05);
+    }, 150);
+    setTimeout(() => {
+      // Bolt catch
+      playTone(400, 0.08, "sawtooth", 0.08);
+      playTone(1200, 0.04, "sine", 0.05);
+    }, 350);
   }, [playTone]);
 
   const playHit = useCallback(() => {
-    playTone(1000, 0.1, "sine", 0.12);
-    setTimeout(() => playTone(1400, 0.08, "sine", 0.08), 50);
+    // CS2 Headshot 'Dink'
+    playTone(350, 0.05, "square", 0.15); // Initial thud
+    playTone(1200, 0.3, "sine", 0.3); // Metallic ring
+    playTone(2400, 0.4, "sine", 0.15); // Harmonics
+    playTone(3600, 0.2, "sine", 0.05);
   }, [playTone]);
 
   const playVictory = useCallback(() => {
-    playTone(523, 0.15, "sine", 0.12);
-    setTimeout(() => playTone(659, 0.15, "sine", 0.12), 150);
-    setTimeout(() => playTone(784, 0.3, "sine", 0.15), 300);
+    // Triumphant round win motif
+    playTone(440, 0.2, "square", 0.1); // A4
+    setTimeout(() => playTone(554, 0.2, "square", 0.1), 150); // C#5
+    setTimeout(() => {
+      playTone(659, 0.4, "square", 0.15); // E5
+      playTone(880, 0.4, "sine", 0.1); // A5
+    }, 300);
   }, [playTone]);
 
   const playError = useCallback(() => {
-    playTone(300, 0.2, "sawtooth", 0.1);
-    setTimeout(() => playTone(200, 0.3, "sawtooth", 0.08), 100);
+    // Empty clip / dry fire click
+    playTone(800, 0.02, "square", 0.1);
+    setTimeout(() => playTone(600, 0.03, "sawtooth", 0.1), 30);
   }, [playTone]);
 
   const toggle = useCallback(() => {
