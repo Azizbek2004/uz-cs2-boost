@@ -452,6 +452,45 @@ export default function JitterDiagnosticPage() {
                 ))}
               </div>
             )}
+
+            {/* CS2 Console Commands */}
+            {scanComplete && (
+              <div className="hud-frame glow-blue" style={{ padding: "24px", marginTop: "24px", background: "linear-gradient(135deg, rgba(0,123,255,0.05), transparent)" }}>
+                <h3
+                  style={{
+                    fontSize: "14px",
+                    fontWeight: "600",
+                    color: "#007bff",
+                    marginBottom: "16px",
+                    textTransform: "uppercase",
+                    letterSpacing: "1px",
+                  }}
+                >
+                  CS2 Engine Network Commands
+                </h3>
+                <p style={{ fontSize: "13px", color: "#888", marginBottom: "16px" }}>
+                  Copy and paste these commands into your CS2 developer console (`~`) to optimize packet delivery and reduce subtick jitter.
+                </p>
+
+                <div style={{ display: "grid", gap: "12px" }}>
+                  {[
+                    { cmd: 'rate "786432"', desc: 'Sets maximum acceptable download bandwidth. Use "196608" for slow connections.' },
+                    { cmd: 'cl_net_buffer_ticks 0', desc: '0 is default (lowest latency). Increase to 1 or 2 ONLY if you have severe packet loss, at the cost of delay.' },
+                    { cmd: 'cq_netgraph 1', desc: 'Enables the telemetry graph in top right to visually monitor jitter and packet loss.' },
+                    { cmd: 'engine_no_focus_sleep 0', desc: 'Prevents the engine from dropping CPU priority when alt-tabbed, ensuring stable network processing.' },
+                  ].map((c) => (
+                    <div key={c.cmd} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "12px", background: "rgba(0,0,0,0.4)", borderRadius: "6px", border: "1px solid rgba(255,255,255,0.05)" }}>
+                      <div>
+                        <code style={{ color: "#fff", background: "rgba(255,255,255,0.1)", padding: "4px 8px", borderRadius: "4px", fontSize: "13px", fontFamily: "monospace" }}>
+                          {c.cmd}
+                        </code>
+                        <div style={{ fontSize: "12px", color: "#888", marginTop: "8px" }}>{c.desc}</div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
           </motion.div>
         )}
       </AnimatePresence>

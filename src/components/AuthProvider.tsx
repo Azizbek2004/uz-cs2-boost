@@ -1,12 +1,9 @@
 "use client";
 
-import React, {
-  createContext,
-  useContext,
-  useState,
-  useEffect,
-  ReactNode,
-} from "react";
+import { useConvexAuth } from "convex/react";
+import { useQuery, useMutation } from "convex/react";
+import { api } from "../../convex/_generated/api";
+import { useAuthActions } from "@convex-dev/auth/react";
 
 interface User {
   _id: string;
@@ -24,74 +21,44 @@ interface User {
   isPremium: boolean;
   audioEnabled?: boolean;
   theme?: string;
+  uzsBalance?: number;
+  rank?: string;
+  loginStreak?: number;
+  skillPoints?: {
+    aim: number;
+    spray: number;
+    movement: number;
+    utility: number;
+    gameSense: number;
+  };
 }
 
-interface AuthContextType {
-  user: User | null;
-  isLoading: boolean;
-  login: (email: string, name: string) => void;
-  logout: () => void;
-  updateUser: (updates: Partial<User>) => void;
-}
+export function useAuth() {
+  const { isAuthenticated, isLoading: isAuthLoading } = useConvexAuth();
+  const userData = useQuery(api.users.current);
+  const { signOut } = useAuthActions();
+  const updateMutation = useMutation(api.users.update);
 
-const AuthContext = createContext<AuthContextType>({
-  user: null,
-  isLoading: true,
-  login: () => {},
-  logout: () => {},
-  updateUser: () => {},
-});
-
-export const useAuth = () => useContext(AuthContext);
-
-export function AuthProvider({ children }: { children: ReactNode }) {
-  const [user, setUser] = useState<User | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    // Load user from localStorage on mount
-    const saved = localStorage.getItem("uz-cs2-user");
-    if (saved) {
-      try {
-        setUser(JSON.parse(saved));
-      } catch {
-        localStorage.removeItem("uz-cs2-user");
-      }
-    }
-    setIsLoading(false);
-  }, []);
-
-  const login = (email: string, name: string) => {
-    const newUser: User = {
-      _id: `user_${Date.now()}`,
-      email,
-      name,
-      isPremium: false,
-      audioEnabled: true,
-      theme: "dark",
-    };
-    setUser(newUser);
-    localStorage.setItem("uz-cs2-user", JSON.stringify(newUser));
+  const login = () => {
+    // Managed by components directly calling signIn from @convex-dev/auth/react
   };
 
-  const logout = () => {
-    setUser(null);
-    localStorage.removeItem("uz-cs2-user");
+  const logout = async () => {
+    await signOut();
+    window.location.href = "/";
   };
 
-  const updateUser = (updates: Partial<User>) => {
-    if (user) {
-      const updated = { ...user, ...updates };
-      setUser(updated);
-      localStorage.setItem("uz-cs2-user", JSON.stringify(updated));
+  const updateUser = async (updates: Partial<User>) => {
+    if (userData?._id) {
+      await updateMutation({ ...updates });
     }
   };
 
-  return (
-    <AuthContext.Provider
-      value={{ user, isLoading, login, logout, updateUser }}
-    >
-      {children}
-    </AuthContext.Provider>
-  );
+  return {
+    user: (userData as unknown as User) || null,
+    isLoading: isAuthLoading || (isAuthenticated && userData === undefined),
+    login,
+    logout,
+    updateUser,
+  };
 }

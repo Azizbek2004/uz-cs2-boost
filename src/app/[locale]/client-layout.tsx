@@ -3,7 +3,6 @@
 import React from "react";
 import ConvexClientProvider from "@/components/ConvexClientProvider";
 import { AudioProvider } from "@/components/AudioProvider";
-import { AuthProvider } from "@/components/AuthProvider";
 import Navigation from "@/components/Navigation";
 
 export default function ClientLayout({
@@ -13,12 +12,10 @@ export default function ClientLayout({
 }) {
   return (
     <ConvexClientProvider>
-      <AuthProvider>
-        <AudioProvider>
-          <Navigation />
-          <main>{children}</main>
-        </AudioProvider>
-      </AuthProvider>
+      <AudioProvider>
+        <Navigation />
+        <main>{children}</main>
+      </AudioProvider>
     </ConvexClientProvider>
   );
 }

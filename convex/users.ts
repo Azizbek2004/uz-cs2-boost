@@ -1,5 +1,41 @@
 import { v } from "convex/values";
 import { query, mutation } from "./_generated/server";
+import { getAuthUserId } from "@convex-dev/auth/server";
+
+export const current = query({
+    args: {},
+    handler: async (ctx) => {
+        const userId = await getAuthUserId(ctx);
+        if (userId === null) return null;
+        return await ctx.db.get(userId);
+    },
+});
+
+export const update = mutation({
+    args: {
+        name: v.optional(v.string()),
+        avatarUrl: v.optional(v.string()),
+        steamId: v.optional(v.string()),
+        faceitId: v.optional(v.string()),
+        faceitNickname: v.optional(v.string()),
+        faceitElo: v.optional(v.number()),
+        faceitLevel: v.optional(v.number()),
+        isPrime: v.optional(v.boolean()),
+        isp: v.optional(v.string()),
+        city: v.optional(v.string()),
+        audioEnabled: v.optional(v.boolean()),
+        theme: v.optional(v.string()),
+    },
+    handler: async (ctx, args) => {
+        const userId = await getAuthUserId(ctx);
+        if (userId === null) throw new Error("Not authenticated");
+        const filtered = Object.fromEntries(
+            Object.entries(args).filter(([, val]) => val !== undefined)
+        );
+        await ctx.db.patch(userId, filtered);
+    },
+});
+
 
 // Get user by email
 export const getByEmail = query({

@@ -30,7 +30,7 @@ import {
 } from "recharts";
 
 export default function DashboardPage() {
-  const { user } = useAuth();
+  const { user, isLoading } = useAuth();
 
   const skillData = useMemo(() => {
     if (!user || !user.skillPoints) return [];
@@ -109,6 +109,16 @@ export default function DashboardPage() {
         };
     }
   }, [user]);
+
+  if (isLoading) {
+    return (
+      <VideoBackground opacity={0.06}>
+        <div style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center" }}>
+          <div style={{ color: "#ff6b00", fontSize: "14px", fontWeight: "600", letterSpacing: "2px", textTransform: "uppercase" }}>Loading Command Center...</div>
+        </div>
+      </VideoBackground>
+    );
+  }
 
   if (!user) {
     return <meta httpEquiv="refresh" content="0;url=/auth" />;
@@ -380,7 +390,7 @@ export default function DashboardPage() {
           Network & Community Hub
         </h2>
         <div className="dashboard-grid" style={{ marginBottom: "32px" }}>
-          <Link href="/ping-booster" style={{ textDecoration: "none" }}>
+          <Link href="/advanced-diagnostics" style={{ textDecoration: "none" }}>
             <DashboardCard
               title="Current Ping"
               value="45ms"
@@ -475,8 +485,8 @@ export default function DashboardPage() {
           >
             {[
               {
-                href: "/ping-booster",
-                label: "Run Ping Scan",
+                href: "/advanced-diagnostics",
+                label: "Network Diagnostics",
                 icon: <IoRocketOutline size={20} />,
                 color: "#ff6b00",
               },

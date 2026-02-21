@@ -3,38 +3,56 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { useAuth } from "@/components/AuthProvider";
+import { useAuthActions } from "@convex-dev/auth/react";
 import { useAudio } from "@/components/AudioProvider";
 import VideoBackground from "@/components/VideoBackground";
 
 export default function AuthPage() {
   const [isLogin, setIsLogin] = useState(true);
   const [email, setEmail] = useState("");
+  const [password, setPassword] = useState(""); // Add password state
   const [name, setName] = useState("");
   const [error, setError] = useState("");
-  const { login } = useAuth();
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const { playClick, playVictory, playError } = useAudio();
+  const { signIn } = useAuthActions();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
+    setIsSubmitting(true);
 
-    if (!email.trim()) {
-      setError("Email is required");
+    if (!email.trim() || !password.trim()) {
+      setError("Email and password are required");
       playError();
+      setIsSubmitting(false);
       return;
     }
 
     if (!isLogin && !name.trim()) {
       setError("Name is required for sign up");
       playError();
+      setIsSubmitting(false);
       return;
     }
 
-    playVictory();
-    login(email.trim(), name.trim() || email.split("@")[0]);
+    try {
+      const formData = new FormData();
+      formData.append("email", email.trim());
+      formData.append("password", password.trim());
+      formData.append("flow", isLogin ? "signIn" : "signUp");
 
-    // Redirect to dashboard
-    window.location.href = "/dashboard";
+      await signIn("password", formData);
+      playVictory();
+
+      // The Convex provider will update, triggering a redirect in the layout or component if needed.
+      // But we can eagerly redirect.
+      window.location.href = "/dashboard";
+    } catch (err: any) {
+      setError(err?.message || "Invalid credentials or sign-up failed. Please try again.");
+      playError();
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -168,8 +186,11 @@ export default function AuthPage() {
                 </label>
                 <input
                   type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                   className="input-field"
                   placeholder="••••••••"
+                  required
                 />
               </div>
             )}
@@ -191,8 +212,11 @@ export default function AuthPage() {
                 </label>
                 <input
                   type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                   className="input-field"
                   placeholder="••••••••"
+                  required
                 />
               </div>
             )}
@@ -212,10 +236,11 @@ export default function AuthPage() {
             <motion.button
               type="submit"
               className="btn-primary"
+              disabled={isSubmitting}
               whileTap={{ scale: 0.97 }}
-              style={{ width: "100%", marginBottom: "16px", fontSize: "15px" }}
+              style={{ width: "100%", marginBottom: "16px", fontSize: "15px", opacity: isSubmitting ? 0.7 : 1 }}
             >
-              {isLogin ? "Sign In" : "Create Account"}
+              {isSubmitting ? "Processing..." : isLogin ? "Sign In" : "Create Account"}
             </motion.button>
 
             {/* OAuth buttons */}
@@ -226,8 +251,10 @@ export default function AuthPage() {
                 style={{ flex: 1, fontSize: "13px", padding: "10px" }}
                 onClick={() => {
                   playClick();
-                  login(email || "steam@user.com", name || "SteamPlayer");
-                  window.location.href = "/dashboard";
+                  // For OAuth in convex-dev/auth, we just pass the provider name
+                  // e.g. signIn("steam") or signIn("github")
+                  // Here we mock it slightly since we only set up Password provider for now
+                  setError("OAuth not yet configured. Please use email/password.");
                 }}
               >
                 🎮 Steam
@@ -238,8 +265,7 @@ export default function AuthPage() {
                 style={{ flex: 1, fontSize: "13px", padding: "10px" }}
                 onClick={() => {
                   playClick();
-                  login(email || "faceit@user.com", name || "FACEITPlayer");
-                  window.location.href = "/dashboard";
+                  setError("OAuth not yet configured. Please use email/password.");
                 }}
               >
                 🏆 FACEIT

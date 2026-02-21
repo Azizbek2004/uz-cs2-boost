@@ -11,6 +11,8 @@
     "convex:dev": "npx convex dev"
   },
   "dependencies": {
+    "@auth/core": "^0.37.4",
+    "@convex-dev/auth": "^0.0.90",
     "@stripe/stripe-js": "^8.8.0",
     "axios": "^1.13.5",
     "convex": "^1.32.0",

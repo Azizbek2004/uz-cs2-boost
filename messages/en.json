@@ -7,9 +7,10 @@
     },
     "Navigation": {
         "dashboard": "Dashboard",
-        "pingBooster": "Ping Booster",
+        "advancedDiagnostics": "Advanced Diagnostics",
         "jitter": "Jitter Diagnostic",
-        "spray": "Spray Simulator",
+        "training": "Training Rooms",
+        "skins": "Skins Catalog",
         "community": "Community",
         "academy": "Academy",
         "profile": "Profile",

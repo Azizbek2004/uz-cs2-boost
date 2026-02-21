@@ -7,9 +7,10 @@
     },
     "Navigation": {
         "dashboard": "Boshqaruv paneli",
-        "pingBooster": "Ping Boster",
+        "advancedDiagnostics": "Kengaytirilgan diagnostika",
         "jitter": "Jitter tahlili",
-        "spray": "Spray Simulyatori",
+        "training": "Trenerovka xonalari",
+        "skins": "Skinlar Katalogi",
         "community": "Hamjamiyat",
         "academy": "Akademiya",
         "profile": "Profil"

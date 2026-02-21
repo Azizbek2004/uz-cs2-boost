@@ -7,9 +7,10 @@
     },
     "Navigation": {
         "dashboard": "Панель управления",
-        "pingBooster": "Пинг Бустер",
+        "advancedDiagnostics": "Расширенная диагностика",
         "jitter": "Проверка джиттера",
-        "spray": "Симулятор спрея",
+        "training": "Тренировочные комнаты",
+        "skins": "Каталог Скинов",
         "community": "Сообщество",
         "academy": "Академия",
         "profile": "Профиль"

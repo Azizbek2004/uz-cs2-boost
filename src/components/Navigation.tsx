@@ -27,6 +27,8 @@ import {
   IoWalletOutline,
   IoShieldCheckmarkOutline,
   IoLaptopOutline,
+  IoColorPaletteOutline,
+  IoColorPalette,
 } from "react-icons/io5";
 import { useAudio } from "./AudioProvider";
 import { useAuth } from "./AuthProvider";
@@ -39,8 +41,8 @@ const navItems = [
     activeIcon: IoHome,
   },
   {
-    href: "/ping-booster",
-    labelKey: "pingBooster",
+    href: "/advanced-diagnostics",
+    labelKey: "advancedDiagnostics",
     icon: IoSpeedometerOutline,
     activeIcon: IoSpeedometer,
   },
@@ -51,10 +53,16 @@ const navItems = [
     activeIcon: IoPulse,
   },
   {
-    href: "/spray-simulator",
-    labelKey: "spray",
+    href: "/training",
+    labelKey: "training",
     icon: IoGameControllerOutline,
     activeIcon: IoGameController,
+  },
+  {
+    href: "/skins",
+    labelKey: "skins",
+    icon: IoColorPaletteOutline,
+    activeIcon: IoColorPalette,
   },
   {
     href: "/community",

@@ -21,11 +21,11 @@ import {
 const features = [
   {
     icon: <IoSpeedometerOutline size={36} />,
-    title: "Ping Booster Hub",
+    title: "Advanced Diagnostics",
     description:
-      "Diagnose and optimize your connection. Reduce ping and jitter for smoother gameplay.",
+      "Deep network analysis, routing inspection, and connection optimization to global CS2 datacenters.",
     color: "#ff6b00",
-    href: "/ping-booster",
+    href: "/advanced-diagnostics",
   },
   {
     icon: <IoPulseOutline size={36} />,
