@@ -3,7 +3,50 @@
         "title": "Xush kelibsiz",
         "subtitle": "Sizning raqobatbardosh panelingiz — natijalarni kuzating va o'yiningizni optimallashtiring.",
         "getStarted": "Bepul boshlang",
-        "signIn": "Kirish"
+        "signIn": "Kirish",
+        "toolsTitle": "DOMINATSIYA UCHUN VOSITALAR",
+        "toolsSubtitle": "Reytingda ko'tarilish va raqobatchilarni ortda qoldirish uchun barcha kerakli vositalar.",
+        "stats": {
+            "activePlayers": "Faol o'yinchilar",
+            "pingReduction": "O'rtacha Ping farqi",
+            "tournaments": "O'tkazilgan turnirlar"
+        },
+        "features": {
+            "advancedDiagnostics": {
+                "title": "Kengaytirilgan diagnostika",
+                "description": "Chuqur tarmoq tahlili, marshrutizatsiya tekshiruvi va xalqaro CS2 serverlariga ulanishni optimallashtirish."
+            },
+            "jitterDiagnostic": {
+                "title": "Jitter tahlili",
+                "description": "Oldin/Keyin vizualizatsiyasi bilan tarmoq tahlili. Barqarorlik muammolarini tezda hal qiling."
+            },
+            "trainingRooms": {
+                "title": "Trenerovka xonalari",
+                "description": "Eng yaxshi CS2 mashg'ulot xaritalariga bir marta bosish orqali ulanish — mo'ljal, spray, harakat va utilita."
+            },
+            "faceitCommunity": {
+                "title": "FACEIT Hamjamiyati",
+                "description": "UZ CS2 o'yinchilari uchun mahalliy reytinglar, skrim izlash va turnir markazi."
+            },
+            "esportsAcademy": {
+                "title": "Kibersport Akademiyasi",
+                "description": "IT Park Game Dev Academy bilan bepul murabbiylik darslari. O'yiningizni kuchaytiring."
+            },
+            "skinsCatalog": {
+                "title": "Skinlar Katalogi",
+                "description": "Haqiqiy bozor narxlari bilan eng yaxshi CS2 qurol skinlarini ko'rib chiqing va toping."
+            }
+        },
+        "cta": {
+            "title": "O'yiningizni <gradient>KUCHAYTIRISHGA</gradient> tayyormisiz?",
+            "subtitle": "O'sib borayotgan UZ CS2 o'yinchilari hamjamiyatiga qo'shiling.",
+            "joinNow": "Hozir qo'shiling — Bepul"
+        },
+        "footer": {
+            "copyright": "© 2026 UZ CS2 Boost. Barcha huquqlar himoyalangan.",
+            "privacy": "Maxfiylik siyosati",
+            "affiliate": "Hamkor biznes: GearUp Booster"
+        }
     },
     "Navigation": {
         "dashboard": "Boshqaruv paneli",

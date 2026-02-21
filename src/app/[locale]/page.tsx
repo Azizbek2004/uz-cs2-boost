@@ -18,69 +18,65 @@ import {
   IoTrophyOutline,
 } from "react-icons/io5";
 
-const features = [
-  {
-    icon: <IoSpeedometerOutline size={36} />,
-    title: "Advanced Diagnostics",
-    description:
-      "Deep network analysis, routing inspection, and connection optimization to global CS2 datacenters.",
-    color: "#ff6b00",
-    href: "/advanced-diagnostics",
-  },
-  {
-    icon: <IoPulseOutline size={36} />,
-    title: "Jitter Diagnostic",
-    description:
-      "Deep network analysis with before/after visualizations. Fix stability issues fast.",
-    color: "#007bff",
-    href: "/jitter-diagnostic",
-  },
-  {
-    icon: <IoGameControllerOutline size={36} />,
-    title: "Training Rooms",
-    description:
-      "One-click connect to the best CS2 practice maps — aim, spray, movement, and utility training.",
-    color: "#00c853",
-    href: "/training",
-  },
-  {
-    icon: <IoPeopleOutline size={36} />,
-    title: "FACEIT Community",
-    description:
-      "Local leaderboards, scrim finder, and tournament hub for UZ CS2 players.",
-    color: "#ffd700",
-    href: "/community",
-  },
-  {
-    icon: <IoSchoolOutline size={36} />,
-    title: "Esports Academy",
-    description:
-      "Free coaching sessions with IT Park Game Dev Academy. Level up your game.",
-    color: "#7c4dff",
-    href: "/academy",
-  },
-  {
-    icon: <IoColorPaletteOutline size={36} />,
-    title: "Skins Catalog",
-    description:
-      "Browse, search, and discover the best CS2 weapon skins with real-time market pricing.",
-    color: "#e91e63",
-    href: "/skins",
-  },
-];
-
-const stats = [
-  { value: "5K+", label: "Active Players", icon: <IoPeopleOutline /> },
-  { value: "<30ms", label: "Avg Ping Reduction", icon: <IoRocketOutline /> },
-  { value: "50+", label: "Tournaments Hosted", icon: <IoTrophyOutline /> },
-];
-
 export default function LandingPage() {
   const { user, isLoading } = useAuth();
   const { playClick } = useAudio();
   const t = useTranslations("HomePage");
 
   const locale = useLocale();
+
+  const features = [
+    {
+      icon: <IoSpeedometerOutline size={36} />,
+      title: t("features.advancedDiagnostics.title"),
+      description: t("features.advancedDiagnostics.description"),
+      color: "#ff6b00",
+      href: "/advanced-diagnostics",
+    },
+    {
+      icon: <IoPulseOutline size={36} />,
+      title: t("features.jitterDiagnostic.title"),
+      description: t("features.jitterDiagnostic.description"),
+      color: "#007bff",
+      href: "/jitter-diagnostic",
+    },
+    {
+      icon: <IoGameControllerOutline size={36} />,
+      title: t("features.trainingRooms.title"),
+      description: t("features.trainingRooms.description"),
+      color: "#00c853",
+      href: "/training",
+    },
+    {
+      icon: <IoPeopleOutline size={36} />,
+      title: t("features.faceitCommunity.title"),
+      description: t("features.faceitCommunity.description"),
+      color: "#ffd700",
+      href: "/community",
+    },
+    {
+      icon: <IoSchoolOutline size={36} />,
+      title: t("features.esportsAcademy.title"),
+      description: t("features.esportsAcademy.description"),
+      color: "#7c4dff",
+      href: "/academy",
+    },
+    {
+      icon: <IoColorPaletteOutline size={36} />,
+      title: t("features.skinsCatalog.title"),
+      description: t("features.skinsCatalog.description"),
+      color: "#e91e63",
+      href: "/skins",
+    },
+  ];
+
+  const stats = [
+    { value: "5K+", label: t("stats.activePlayers"), icon: <IoPeopleOutline /> },
+    { value: "<30ms", label: t("stats.pingReduction"), icon: <IoRocketOutline /> },
+    { value: "50+", label: t("stats.tournaments"), icon: <IoTrophyOutline /> },
+  ];
+
+  // Removed duplicate setup code as it's now above
 
   // If loading, show nothing (prevents false redirect)
   if (isLoading) {
@@ -258,7 +254,7 @@ export default function LandingPage() {
               fontFamily: "Orbitron, Inter, sans-serif",
             }}
           >
-            <span className="gradient-text">TOOLS FOR DOMINATION</span>
+            <span className="gradient-text">{t("toolsTitle")}</span>
           </motion.h2>
           <p
             style={{
@@ -269,7 +265,7 @@ export default function LandingPage() {
               margin: "0 auto 48px",
             }}
           >
-            Everything you need to climb the ranks and dominate the competition.
+            {t("toolsSubtitle")}
           </p>
 
           <div
@@ -345,11 +341,10 @@ export default function LandingPage() {
                 marginBottom: "16px",
                 fontFamily: "Orbitron, Inter, sans-serif",
               }}
-            >
-              Ready to <span className="gradient-text">BOOST</span> your game?
-            </h2>
+              dangerouslySetInnerHTML={{ __html: t("cta.title").replace('<gradient>', '<span class="gradient-text">').replace('</gradient>', '</span>') }}
+            />
             <p style={{ color: "#888", marginBottom: "32px" }}>
-              Join the growing community of UZ CS2 players.
+              {t("cta.subtitle")}
             </p>
             <Link href="/auth">
               <motion.button
@@ -359,7 +354,7 @@ export default function LandingPage() {
                 onClick={() => playClick()}
                 style={{ fontSize: "16px", padding: "16px 48px" }}
               >
-                Join Now — It&apos;s Free
+                {t("cta.joinNow")}
               </motion.button>
             </Link>
           </motion.div>
@@ -375,7 +370,7 @@ export default function LandingPage() {
             fontSize: "13px",
           }}
         >
-          <p>© 2026 UZ CS2 Boost. All rights reserved.</p>
+          <p>{t("footer.copyright")}</p>
           <div
             style={{
               display: "flex",
@@ -388,7 +383,7 @@ export default function LandingPage() {
               href="/privacy"
               style={{ color: "#888", textDecoration: "none" }}
             >
-              Privacy Policy
+              {t("footer.privacy")}
             </Link>
             <a
               href="https://www.gearupbooster.com/?ref=uzcs2boost"
@@ -396,7 +391,7 @@ export default function LandingPage() {
               rel="noopener noreferrer"
               style={{ color: "#888", textDecoration: "none" }}
             >
-              Affiliate: GearUp Booster
+              {t("footer.affiliate")}
             </a>
           </div>
         </footer>

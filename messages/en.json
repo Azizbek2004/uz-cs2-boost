@@ -3,7 +3,50 @@
         "title": "Welcome back",
         "subtitle": "Your competitive dashboard — track performance and optimize your game.",
         "getStarted": "Get Started Free",
-        "signIn": "Sign In"
+        "signIn": "Sign In",
+        "toolsTitle": "TOOLS FOR DOMINATION",
+        "toolsSubtitle": "Everything you need to climb the ranks and dominate the competition.",
+        "stats": {
+            "activePlayers": "Active Players",
+            "pingReduction": "Avg Ping Reduction",
+            "tournaments": "Tournaments Hosted"
+        },
+        "features": {
+            "advancedDiagnostics": {
+                "title": "Advanced Diagnostics",
+                "description": "Deep network analysis, routing inspection, and connection optimization to global CS2 datacenters."
+            },
+            "jitterDiagnostic": {
+                "title": "Jitter Diagnostic",
+                "description": "Deep network analysis with before/after visualizations. Fix stability issues fast."
+            },
+            "trainingRooms": {
+                "title": "Training Rooms",
+                "description": "One-click connect to the best CS2 practice maps — aim, spray, movement, and utility training."
+            },
+            "faceitCommunity": {
+                "title": "FACEIT Community",
+                "description": "Local leaderboards, scrim finder, and tournament hub for UZ CS2 players."
+            },
+            "esportsAcademy": {
+                "title": "Esports Academy",
+                "description": "Free coaching sessions with IT Park Game Dev Academy. Level up your game."
+            },
+            "skinsCatalog": {
+                "title": "Skins Catalog",
+                "description": "Browse, search, and discover the best CS2 weapon skins with real-time market pricing."
+            }
+        },
+        "cta": {
+            "title": "Ready to <gradient>BOOST</gradient> your game?",
+            "subtitle": "Join the growing community of UZ CS2 players.",
+            "joinNow": "Join Now — It's Free"
+        },
+        "footer": {
+            "copyright": "© 2026 UZ CS2 Boost. All rights reserved.",
+            "privacy": "Privacy Policy",
+            "affiliate": "Affiliate: GearUp Booster"
+        }
     },
     "Navigation": {
         "dashboard": "Dashboard",
