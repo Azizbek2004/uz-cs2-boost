@@ -22,7 +22,7 @@ export const createCheckoutSession = action({
         try {
             // Dynamic import to avoid issues when Stripe is not configured
             const Stripe = (await import("stripe")).default;
-            const stripe = new Stripe(stripeKey, { apiVersion: "2024-12-18.acacia" });
+            const stripe = new Stripe(stripeKey, { apiVersion: "2026-01-28.clover" });
 
             const session = await stripe.checkout.sessions.create({
                 payment_method_types: ["card"],
