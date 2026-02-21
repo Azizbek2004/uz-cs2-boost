@@ -1,6 +1,5 @@
 "use client";
 
-import { useConvexAuth } from "convex/react";
 import { useQuery, useMutation } from "convex/react";
 import { api } from "../../convex/_generated/api";
 import { useAuthActions } from "@convex-dev/auth/react";
@@ -35,7 +34,6 @@ interface User {
 }
 
 export function useAuth() {
-  const { isAuthenticated, isLoading: isAuthLoading } = useConvexAuth();
   const userData = useQuery(api.users.current);
   const { signOut } = useAuthActions();
   const updateMutation = useMutation(api.users.update);
@@ -59,7 +57,7 @@ export function useAuth() {
 
   return {
     user: (userData as unknown as User) || null,
-    isLoading: isAuthLoading || (isAuthenticated && userData === undefined),
+    isLoading: userData === undefined,
     login,
     logout,
     updateUser,
