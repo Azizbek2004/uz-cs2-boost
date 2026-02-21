@@ -22,42 +22,48 @@ const features = [
   {
     icon: <IoSpeedometerOutline size={36} />,
     title: "Ping Booster Hub",
-    description: "Diagnose and optimize your connection. Reduce ping and jitter for smoother gameplay.",
+    description:
+      "Diagnose and optimize your connection. Reduce ping and jitter for smoother gameplay.",
     color: "#ff6b00",
     href: "/ping-booster",
   },
   {
     icon: <IoPulseOutline size={36} />,
     title: "Jitter Diagnostic",
-    description: "Deep network analysis with before/after visualizations. Fix stability issues fast.",
+    description:
+      "Deep network analysis with before/after visualizations. Fix stability issues fast.",
     color: "#007bff",
     href: "/jitter-diagnostic",
   },
   {
     icon: <IoGameControllerOutline size={36} />,
     title: "Spray Simulator",
-    description: "Master AK-47, M4A4, and M4A1-S spray patterns with interactive canvas training.",
+    description:
+      "Master AK-47, M4A4, and M4A1-S spray patterns with interactive canvas training.",
     color: "#00c853",
     href: "/spray-simulator",
   },
   {
     icon: <IoPeopleOutline size={36} />,
     title: "FACEIT Community",
-    description: "Local leaderboards, scrim finder, and tournament hub for UZ CS2 players.",
+    description:
+      "Local leaderboards, scrim finder, and tournament hub for UZ CS2 players.",
     color: "#ffd700",
     href: "/community",
   },
   {
     icon: <IoSchoolOutline size={36} />,
     title: "Esports Academy",
-    description: "Free coaching sessions with IT Park Game Dev Academy. Level up your game.",
+    description:
+      "Free coaching sessions with IT Park Game Dev Academy. Level up your game.",
     color: "#7c4dff",
     href: "/academy",
   },
   {
     icon: <IoShieldCheckmarkOutline size={36} />,
     title: "Premium Analytics",
-    description: "Advanced stats, personalized tips, and premium leaderboards for $2-5/mo.",
+    description:
+      "Advanced stats, personalized tips, and premium leaderboards for $2-5/mo.",
     color: "#ff6b00",
     href: "/profile",
   },
@@ -76,9 +82,7 @@ export default function LandingPage() {
 
   // If logged in, redirect to dashboard
   if (user) {
-    return (
-      <meta httpEquiv="refresh" content="0;url=/dashboard" />
-    );
+    return <meta httpEquiv="refresh" content="0;url=/dashboard" />;
   }
 
   return (
@@ -118,7 +122,13 @@ export default function LandingPage() {
                 boxShadow: "0 0 40px rgba(255,107,0,0.3)",
                 fontFamily: "Orbitron, sans-serif",
               }}
-              animate={{ boxShadow: ["0 0 30px rgba(255,107,0,0.2)", "0 0 50px rgba(255,107,0,0.4)", "0 0 30px rgba(255,107,0,0.2)"] }}
+              animate={{
+                boxShadow: [
+                  "0 0 30px rgba(255,107,0,0.2)",
+                  "0 0 50px rgba(255,107,0,0.4)",
+                  "0 0 30px rgba(255,107,0,0.2)",
+                ],
+              }}
               transition={{ duration: 3, repeat: Infinity }}
             >
               UZ
@@ -133,7 +143,20 @@ export default function LandingPage() {
                 fontFamily: "Orbitron, Inter, sans-serif",
               }}
             >
-              {t("title").split(" ").map((w, i) => i === 1 ? <span key={i} className="gradient-text"> {w}</span> : (i === 0 ? w : ` ${w}`))}
+              {t("title")
+                .split(" ")
+                .map((w, i) =>
+                  i === 1 ? (
+                    <span key={i} className="gradient-text">
+                      {" "}
+                      {w}
+                    </span>
+                  ) : i === 0 ? (
+                    w
+                  ) : (
+                    ` ${w}`
+                  ),
+                )}
             </h1>
 
             <p
@@ -148,7 +171,14 @@ export default function LandingPage() {
               {t("subtitle")}
             </p>
 
-            <div style={{ display: "flex", gap: "16px", justifyContent: "center", flexWrap: "wrap" }}>
+            <div
+              style={{
+                display: "flex",
+                gap: "16px",
+                justifyContent: "center",
+                flexWrap: "wrap",
+              }}
+            >
               <Link href="/auth" onClick={() => playClick()}>
                 <motion.button
                   className="btn-primary"
@@ -186,17 +216,30 @@ export default function LandingPage() {
           >
             {stats.map((stat, i) => (
               <div key={i} style={{ textAlign: "center" }}>
-                <div style={{ fontSize: "32px", fontWeight: "800", color: "#ff6b00", fontFamily: "Orbitron, sans-serif" }}>
+                <div
+                  style={{
+                    fontSize: "32px",
+                    fontWeight: "800",
+                    color: "#ff6b00",
+                    fontFamily: "Orbitron, sans-serif",
+                  }}
+                >
                   {stat.value}
                 </div>
-                <div style={{ fontSize: "13px", color: "#888", marginTop: "4px" }}>{stat.label}</div>
+                <div
+                  style={{ fontSize: "13px", color: "#888", marginTop: "4px" }}
+                >
+                  {stat.label}
+                </div>
               </div>
             ))}
           </motion.div>
         </section>
 
         {/* Features Section */}
-        <section style={{ padding: "80px 24px", maxWidth: "1200px", margin: "0 auto" }}>
+        <section
+          style={{ padding: "80px 24px", maxWidth: "1200px", margin: "0 auto" }}
+        >
           <motion.h2
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -210,7 +253,15 @@ export default function LandingPage() {
           >
             <span className="gradient-text">TOOLS FOR DOMINATION</span>
           </motion.h2>
-          <p style={{ textAlign: "center", color: "#888", marginBottom: "48px", maxWidth: "500px", margin: "0 auto 48px" }}>
+          <p
+            style={{
+              textAlign: "center",
+              color: "#888",
+              marginBottom: "48px",
+              maxWidth: "500px",
+              margin: "0 auto 48px",
+            }}
+          >
             Everything you need to climb the ranks and dominate the competition.
           </p>
 
@@ -229,17 +280,35 @@ export default function LandingPage() {
                 transition={{ delay: i * 0.1, duration: 0.5 }}
                 viewport={{ once: true }}
               >
-                <Link href={user ? feature.href : "/auth"} style={{ textDecoration: "none" }}>
+                <Link
+                  href={user ? feature.href : "/auth"}
+                  style={{ textDecoration: "none" }}
+                >
                   <motion.div
                     className="hud-frame"
                     whileHover={{ scale: 1.03, y: -6 }}
                     style={{ padding: "28px", height: "100%" }}
                   >
-                    <div style={{ color: feature.color, marginBottom: "16px" }}>{feature.icon}</div>
-                    <h3 style={{ fontSize: "18px", fontWeight: "700", color: "white", marginBottom: "8px" }}>
+                    <div style={{ color: feature.color, marginBottom: "16px" }}>
+                      {feature.icon}
+                    </div>
+                    <h3
+                      style={{
+                        fontSize: "18px",
+                        fontWeight: "700",
+                        color: "white",
+                        marginBottom: "8px",
+                      }}
+                    >
                       {feature.title}
                     </h3>
-                    <p style={{ fontSize: "14px", color: "#aaa", lineHeight: 1.5 }}>
+                    <p
+                      style={{
+                        fontSize: "14px",
+                        color: "#aaa",
+                        lineHeight: 1.5,
+                      }}
+                    >
                       {feature.description}
                     </p>
                   </motion.div>
@@ -300,11 +369,26 @@ export default function LandingPage() {
           }}
         >
           <p>© 2025 UZ CS2 Boost. All rights reserved.</p>
-          <div style={{ display: "flex", gap: "24px", justifyContent: "center", marginTop: "12px" }}>
-            <Link href="/privacy" style={{ color: "#888", textDecoration: "none" }}>
+          <div
+            style={{
+              display: "flex",
+              gap: "24px",
+              justifyContent: "center",
+              marginTop: "12px",
+            }}
+          >
+            <Link
+              href="/privacy"
+              style={{ color: "#888", textDecoration: "none" }}
+            >
               Privacy Policy
             </Link>
-            <a href="https://www.gearupbooster.com/?ref=uzcs2boost" target="_blank" rel="noopener noreferrer" style={{ color: "#888", textDecoration: "none" }}>
+            <a
+              href="https://www.gearupbooster.com/?ref=uzcs2boost"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color: "#888", textDecoration: "none" }}
+            >
               Affiliate: GearUp Booster
             </a>
           </div>
