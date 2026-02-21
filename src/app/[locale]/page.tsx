@@ -78,13 +78,8 @@ export default function LandingPage() {
 
   // Removed duplicate setup code as it's now above
 
-  // If loading, show nothing (prevents false redirect)
-  if (isLoading) {
-    return <div style={{ minHeight: "100vh", background: "#0a0a0a" }} />;
-  }
-
-  // If logged in, redirect to dashboard
-  if (user) {
+  // If logged in and auth has settled, redirect to dashboard
+  if (!isLoading && user) {
     return <meta httpEquiv="refresh" content={`0;url=/${locale}/dashboard`} />;
   }
 
