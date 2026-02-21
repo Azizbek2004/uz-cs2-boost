@@ -7,7 +7,7 @@ export default defineSchema({
   users: defineTable({
     // Auth
     email: v.string(),
-    name: v.string(),
+    name: v.optional(v.string()),
     avatarUrl: v.optional(v.string()),
     passwordHash: v.optional(v.string()),
 
@@ -24,7 +24,7 @@ export default defineSchema({
     city: v.optional(v.string()),
 
     // Subscription
-    isPremium: v.boolean(),
+    isPremium: v.optional(v.boolean()),
     stripeCustomerId: v.optional(v.string()),
     stripeSubscriptionId: v.optional(v.string()),
     premiumExpiresAt: v.optional(v.number()),

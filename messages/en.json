@@ -16,5 +16,26 @@
         "profile": "Profile",
         "partnerPortal": "Partner Portal",
         "certification": "Certification"
+    },
+    "Auth": {
+        "titleLogin": "WELCOME BACK",
+        "titleSignup": "JOIN THE FIGHT",
+        "subtitleLogin": "Sign in to your UZ CS2 Boost account",
+        "subtitleSignup": "Create your competitive edge",
+        "playerName": "Player Name",
+        "playerNamePlaceholder": "Your CS2 nickname",
+        "email": "Email",
+        "emailPlaceholder": "player@example.com",
+        "password": "Password",
+        "passwordPlaceholder": "••••••••",
+        "processing": "Processing...",
+        "signIn": "Sign In",
+        "createAccount": "Create Account",
+        "toggleToSignup": "Don't have an account? Sign up",
+        "toggleToLogin": "Already have an account? Sign in",
+        "errorMissingEmailPassword": "Email and password are required",
+        "errorMissingName": "Name is required for sign up",
+        "errorGeneric": "Invalid credentials or sign-up failed. Please try again.",
+        "errorOauthNotConfigured": "OAuth not yet configured. Please use email/password."
     }
 }

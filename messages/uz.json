@@ -14,5 +14,26 @@
         "community": "Hamjamiyat",
         "academy": "Akademiya",
         "profile": "Profil"
+    },
+    "Auth": {
+        "titleLogin": "XUSH KELIBSIZ",
+        "titleSignup": "JANGGA QO'SHILING",
+        "subtitleLogin": "UZ CS2 Boost hisobingizga kiring",
+        "subtitleSignup": "Raqobatbardosh ustunligingizni yarating",
+        "playerName": "O'yinchi ismi",
+        "playerNamePlaceholder": "Sizning CS2 taxallusingiz",
+        "email": "Pochta",
+        "emailPlaceholder": "ochinchi@misol.uz",
+        "password": "Parol",
+        "passwordPlaceholder": "••••••••",
+        "processing": "Jarayonda...",
+        "signIn": "Kirish",
+        "createAccount": "Hisob yaratish",
+        "toggleToSignup": "Hisobingiz yo'qmi? Ro'yxatdan o'tish",
+        "toggleToLogin": "Hisobingiz bormi? Kirish",
+        "errorMissingEmailPassword": "Pochta va parol majburiy",
+        "errorMissingName": "Ro'yxatdan o'tish uchun ism majburiy",
+        "errorGeneric": "Noto'g'ri ma'lumotlar yoki ro'yxatdan o'tish amalga oshmadi. Qaytadan urinib ko'ring.",
+        "errorOauthNotConfigured": "OAuth hali sozlanmagan. Iltimos pochta/paroldan foydalaning."
     }
 }

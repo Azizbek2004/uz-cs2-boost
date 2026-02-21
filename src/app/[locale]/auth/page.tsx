@@ -6,6 +6,7 @@ import { useAuth } from "@/components/AuthProvider";
 import { useAuthActions } from "@convex-dev/auth/react";
 import { useAudio } from "@/components/AudioProvider";
 import VideoBackground from "@/components/VideoBackground";
+import { useTranslations } from "next-intl";
 
 export default function AuthPage() {
   const [isLogin, setIsLogin] = useState(true);
@@ -16,6 +17,7 @@ export default function AuthPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { playClick, playVictory, playError } = useAudio();
   const { signIn } = useAuthActions();
+  const t = useTranslations("Auth");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -23,14 +25,14 @@ export default function AuthPage() {
     setIsSubmitting(true);
 
     if (!email.trim() || !password.trim()) {
-      setError("Email and password are required");
+      setError(t("errorMissingEmailPassword"));
       playError();
       setIsSubmitting(false);
       return;
     }
 
     if (!isLogin && !name.trim()) {
-      setError("Name is required for sign up");
+      setError(t("errorMissingName"));
       playError();
       setIsSubmitting(false);
       return;
@@ -49,7 +51,7 @@ export default function AuthPage() {
       // But we can eagerly redirect.
       window.location.href = "/dashboard";
     } catch (err: any) {
-      setError(err?.message || "Invalid credentials or sign-up failed. Please try again.");
+      setError(err?.message || t("errorGeneric"));
       playError();
       setIsSubmitting(false);
     }
@@ -105,13 +107,11 @@ export default function AuthPage() {
               }}
             >
               <span className="gradient-text">
-                {isLogin ? "WELCOME BACK" : "JOIN THE FIGHT"}
+                {isLogin ? t("titleLogin") : t("titleSignup")}
               </span>
             </h1>
             <p style={{ color: "#888", fontSize: "14px", marginTop: "8px" }}>
-              {isLogin
-                ? "Sign in to your UZ CS2 Boost account"
-                : "Create your competitive edge"}
+              {isLogin ? t("subtitleLogin") : t("subtitleSignup")}
             </p>
           </div>
 
@@ -133,14 +133,14 @@ export default function AuthPage() {
                     marginBottom: "6px",
                   }}
                 >
-                  Player Name
+                  {t("playerName")}
                 </label>
                 <input
                   type="text"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   className="input-field"
-                  placeholder="Your CS2 nickname"
+                  placeholder={t("playerNamePlaceholder")}
                 />
               </motion.div>
             )}
@@ -157,14 +157,14 @@ export default function AuthPage() {
                   marginBottom: "6px",
                 }}
               >
-                Email
+                {t("email")}
               </label>
               <input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="input-field"
-                placeholder="player@example.com"
+                placeholder={t("emailPlaceholder")}
                 required
               />
             </div>
@@ -182,14 +182,14 @@ export default function AuthPage() {
                     marginBottom: "6px",
                   }}
                 >
-                  Password
+                  {t("password")}
                 </label>
                 <input
                   type="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   className="input-field"
-                  placeholder="••••••••"
+                  placeholder={t("passwordPlaceholder")}
                   required
                 />
               </div>
@@ -208,14 +208,14 @@ export default function AuthPage() {
                     marginBottom: "6px",
                   }}
                 >
-                  Password
+                  {t("password")}
                 </label>
                 <input
                   type="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   className="input-field"
-                  placeholder="••••••••"
+                  placeholder={t("passwordPlaceholder")}
                   required
                 />
               </div>
@@ -240,7 +240,7 @@ export default function AuthPage() {
               whileTap={{ scale: 0.97 }}
               style={{ width: "100%", marginBottom: "16px", fontSize: "15px", opacity: isSubmitting ? 0.7 : 1 }}
             >
-              {isSubmitting ? "Processing..." : isLogin ? "Sign In" : "Create Account"}
+              {isSubmitting ? t("processing") : isLogin ? t("signIn") : t("createAccount")}
             </motion.button>
 
             {/* OAuth buttons */}
@@ -254,7 +254,7 @@ export default function AuthPage() {
                   // For OAuth in convex-dev/auth, we just pass the provider name
                   // e.g. signIn("steam") or signIn("github")
                   // Here we mock it slightly since we only set up Password provider for now
-                  setError("OAuth not yet configured. Please use email/password.");
+                  setError(t("errorOauthNotConfigured"));
                 }}
               >
                 🎮 Steam
@@ -265,7 +265,7 @@ export default function AuthPage() {
                 style={{ flex: 1, fontSize: "13px", padding: "10px" }}
                 onClick={() => {
                   playClick();
-                  setError("OAuth not yet configured. Please use email/password.");
+                  setError(t("errorOauthNotConfigured"));
                 }}
               >
                 🏆 FACEIT
@@ -287,9 +287,7 @@ export default function AuthPage() {
                   fontSize: "14px",
                 }}
               >
-                {isLogin
-                  ? "Don't have an account? Sign up"
-                  : "Already have an account? Sign in"}
+                {isLogin ? t("toggleToSignup") : t("toggleToLogin")}
               </button>
             </div>
           </form>

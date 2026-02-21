@@ -14,5 +14,26 @@
         "community": "Сообщество",
         "academy": "Академия",
         "profile": "Профиль"
+    },
+    "Auth": {
+        "titleLogin": "С ВОЗВРАЩЕНИЕМ",
+        "titleSignup": "ВСТУПИТЬ В БОЙ",
+        "subtitleLogin": "Войдите в свой аккаунт UZ CS2 Boost",
+        "subtitleSignup": "Создайте свое конкурентное преимущество",
+        "playerName": "Имя Игрока",
+        "playerNamePlaceholder": "Ваш никнейм в CS2",
+        "email": "Email",
+        "emailPlaceholder": "игрок@пример.com",
+        "password": "Пароль",
+        "passwordPlaceholder": "••••••••",
+        "processing": "Обработка...",
+        "signIn": "Войти",
+        "createAccount": "Создать Аккаунт",
+        "toggleToSignup": "Нет аккаунта? Зарегистрируйтесь",
+        "toggleToLogin": "Уже есть аккаунт? Войдите",
+        "errorMissingEmailPassword": "Email и пароль обязательны",
+        "errorMissingName": "Имя обязательно для регистрации",
+        "errorGeneric": "Неверные учетные данные или сбой регистрации. Пожалуйста, попробуйте еще раз.",
+        "errorOauthNotConfigured": "OAuth еще не настроен. Пожалуйста, используйте email/пароль."
     }
 }

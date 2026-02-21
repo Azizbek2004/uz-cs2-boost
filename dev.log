@@ -11,3 +11,6 @@
 ✓ Ready in 1384ms
  GET /en 200 in 1183ms (compile: 806ms, proxy.ts: 82ms, render: 295ms)
   Reload env: .env.local
+✓ Compiled in 152ms
+✓ Compiled in 24ms
+✓ Compiled in 19ms
