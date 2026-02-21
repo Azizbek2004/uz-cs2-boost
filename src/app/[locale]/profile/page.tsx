@@ -19,7 +19,7 @@ import {
 import { useLocale } from "next-intl";
 
 export default function ProfilePage() {
-  const { user, updateUser, logout } = useAuth();
+  const { user, updateUser, logout, isLoading } = useAuth();
   const { playClick, playVictory, isEnabled, toggle } = useAudio();
   const [activeTab, setActiveTab] = useState<"stats" | "settings" | "premium">(
     "stats",
@@ -32,6 +32,10 @@ export default function ProfilePage() {
   const [city, setCity] = useState(user?.city || "Tashkent");
 
   const locale = useLocale();
+
+  if (isLoading) {
+    return <div style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center" }}><div style={{ color: "#ff6b00", fontSize: "14px", fontWeight: "600", letterSpacing: "2px", textTransform: "uppercase" }}>Loading Profile...</div></div>;
+  }
 
   if (!user) return <meta httpEquiv="refresh" content={`0;url=/${locale}/auth`} />;
 

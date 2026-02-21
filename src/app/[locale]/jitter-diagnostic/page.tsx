@@ -29,7 +29,7 @@ interface JitterSample {
 }
 
 export default function JitterDiagnosticPage() {
-  const { user } = useAuth();
+  const { user, isLoading } = useAuth();
   const { playClick, playReload, playVictory } = useAudio();
   const [isScanning, setIsScanning] = useState(false);
   const [progress, setProgress] = useState(0);
@@ -43,6 +43,10 @@ export default function JitterDiagnosticPage() {
   });
 
   const locale = useLocale();
+
+  if (isLoading) {
+    return <div style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center" }}><div style={{ color: "#ff6b00", fontSize: "14px", fontWeight: "600", letterSpacing: "2px", textTransform: "uppercase" }}>Loading Diagnostics...</div></div>;
+  }
 
   if (!user) return <meta httpEquiv="refresh" content={`0;url=/${locale}/auth`} />;
 

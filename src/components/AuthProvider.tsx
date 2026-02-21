@@ -19,7 +19,7 @@ interface User {
   isPrime?: boolean;
   isp?: string;
   city?: string;
-  isPremium: boolean;
+  isPremium?: boolean;
   audioEnabled?: boolean;
   theme?: string;
   uzsBalance?: number;

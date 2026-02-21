@@ -111,6 +111,8 @@ export default function DashboardPage() {
     }
   }, [user]);
 
+  const locale = useLocale();
+
   if (isLoading) {
     return (
       <VideoBackground opacity={0.06}>
@@ -120,8 +122,6 @@ export default function DashboardPage() {
       </VideoBackground>
     );
   }
-
-  const locale = useLocale();
 
   if (!user) {
     return <meta httpEquiv="refresh" content={`0;url=/${locale}/auth`} />;

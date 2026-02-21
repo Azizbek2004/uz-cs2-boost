@@ -13,7 +13,7 @@ import {
   IoGameControllerOutline,
   IoPeopleOutline,
   IoSchoolOutline,
-  IoShieldCheckmarkOutline,
+  IoColorPaletteOutline,
   IoRocketOutline,
   IoTrophyOutline,
 } from "react-icons/io5";
@@ -37,11 +37,11 @@ const features = [
   },
   {
     icon: <IoGameControllerOutline size={36} />,
-    title: "Spray Simulator",
+    title: "Training Rooms",
     description:
-      "Master AK-47, M4A4, and M4A1-S spray patterns with interactive canvas training.",
+      "One-click connect to the best CS2 practice maps — aim, spray, movement, and utility training.",
     color: "#00c853",
-    href: "/spray-simulator",
+    href: "/training",
   },
   {
     icon: <IoPeopleOutline size={36} />,
@@ -60,12 +60,12 @@ const features = [
     href: "/academy",
   },
   {
-    icon: <IoShieldCheckmarkOutline size={36} />,
-    title: "Premium Analytics",
+    icon: <IoColorPaletteOutline size={36} />,
+    title: "Skins Catalog",
     description:
-      "Advanced stats, personalized tips, and premium leaderboards for $2-5/mo.",
-    color: "#ff6b00",
-    href: "/profile",
+      "Browse, search, and discover the best CS2 weapon skins with real-time market pricing.",
+    color: "#e91e63",
+    href: "/skins",
   },
 ];
 
@@ -76,11 +76,16 @@ const stats = [
 ];
 
 export default function LandingPage() {
-  const { user } = useAuth();
+  const { user, isLoading } = useAuth();
   const { playClick } = useAudio();
   const t = useTranslations("HomePage");
 
   const locale = useLocale();
+
+  // If loading, show nothing (prevents false redirect)
+  if (isLoading) {
+    return <div style={{ minHeight: "100vh", background: "#0a0a0a" }} />;
+  }
 
   // If logged in, redirect to dashboard
   if (user) {
@@ -370,7 +375,7 @@ export default function LandingPage() {
             fontSize: "13px",
           }}
         >
-          <p>© 2025 UZ CS2 Boost. All rights reserved.</p>
+          <p>© 2026 UZ CS2 Boost. All rights reserved.</p>
           <div
             style={{
               display: "flex",

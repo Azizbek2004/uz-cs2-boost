@@ -42,6 +42,7 @@ const COURSES = [
 
 export default function AcademyPage() {
   const { user } = useAuth();
+  const { isLoading } = useAuth();
   const { playClick, playVictory } = useAudio();
   const [showForm, setShowForm] = useState(false);
   const [submitted, setSubmitted] = useState(false);
@@ -55,6 +56,10 @@ export default function AcademyPage() {
   });
 
   const locale = useLocale();
+
+  if (isLoading) {
+    return <div style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center" }}><div style={{ color: "#ff6b00", fontSize: "14px", fontWeight: "600", letterSpacing: "2px", textTransform: "uppercase" }}>Loading Academy...</div></div>;
+  }
 
   if (!user) return <meta httpEquiv="refresh" content={`0;url=/${locale}/auth`} />;
 
