@@ -20,6 +20,7 @@ import {
   IoCheckmarkCircleOutline,
   IoWarningOutline,
 } from "react-icons/io5";
+import { useLocale } from "next-intl";
 
 interface JitterSample {
   index: number;
@@ -41,7 +42,9 @@ export default function JitterDiagnosticPage() {
     stability: "",
   });
 
-  if (!user) return <meta httpEquiv="refresh" content="0;url=/auth" />;
+  const locale = useLocale();
+
+  if (!user) return <meta httpEquiv="refresh" content={`0;url=/${locale}/auth`} />;
 
   const runDiagnostic = useCallback(async () => {
     playReload();

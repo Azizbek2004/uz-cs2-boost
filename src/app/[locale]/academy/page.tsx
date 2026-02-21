@@ -11,6 +11,7 @@ import {
   IoAnalyticsOutline,
   IoPeopleOutline,
 } from "react-icons/io5";
+import { useLocale } from "next-intl";
 
 const COURSES = [
   {
@@ -53,7 +54,9 @@ export default function AcademyPage() {
     message: "",
   });
 
-  if (!user) return <meta httpEquiv="refresh" content="0;url=/auth" />;
+  const locale = useLocale();
+
+  if (!user) return <meta httpEquiv="refresh" content={`0;url=/${locale}/auth`} />;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();

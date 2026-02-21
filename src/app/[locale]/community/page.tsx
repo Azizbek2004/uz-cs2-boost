@@ -12,6 +12,7 @@ import {
   IoCalendarOutline,
   IoAddCircleOutline,
 } from "react-icons/io5";
+import { useLocale } from "next-intl";
 
 // Mock leaderboard data
 const MOCK_LEADERBOARD = [
@@ -195,7 +196,9 @@ export default function CommunityPage() {
   const [scrimSearch, setScrimSearch] = useState("");
   const [showCreateScrim, setShowCreateScrim] = useState(false);
 
-  if (!user) return <meta httpEquiv="refresh" content="0;url=/auth" />;
+  const locale = useLocale();
+
+  if (!user) return <meta httpEquiv="refresh" content={`0;url=/${locale}/auth`} />;
 
   return (
     <div className="page-container">
@@ -393,7 +396,7 @@ export default function CommunityPage() {
             {MOCK_SCRIMS.filter((s) =>
               scrimSearch
                 ? s.title.toLowerCase().includes(scrimSearch.toLowerCase()) ||
-                  s.map.toLowerCase().includes(scrimSearch.toLowerCase())
+                s.map.toLowerCase().includes(scrimSearch.toLowerCase())
                 : true,
             ).map((scrim, i) => (
               <motion.div

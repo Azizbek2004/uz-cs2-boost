@@ -7,6 +7,7 @@ import { useAuth } from "@/components/AuthProvider";
 import DashboardCard from "@/components/DashboardCard";
 import VideoBackground from "@/components/VideoBackground";
 import OnboardingModal from "@/components/OnboardingModal";
+import { useLocale } from "next-intl";
 import {
   IoSpeedometerOutline,
   IoPulseOutline,
@@ -120,8 +121,10 @@ export default function DashboardPage() {
     );
   }
 
+  const locale = useLocale();
+
   if (!user) {
-    return <meta httpEquiv="refresh" content="0;url=/auth" />;
+    return <meta httpEquiv="refresh" content={`0;url=/${locale}/auth`} />;
   }
 
   return (

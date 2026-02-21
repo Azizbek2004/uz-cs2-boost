@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import { useAuth } from "@/components/AuthProvider";
 import { useAudio } from "@/components/AudioProvider";
 import VideoBackground from "@/components/VideoBackground";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import {
   IoSpeedometerOutline,
   IoPulseOutline,
@@ -80,9 +80,11 @@ export default function LandingPage() {
   const { playClick } = useAudio();
   const t = useTranslations("HomePage");
 
+  const locale = useLocale();
+
   // If logged in, redirect to dashboard
   if (user) {
-    return <meta httpEquiv="refresh" content="0;url=/dashboard" />;
+    return <meta httpEquiv="refresh" content={`0;url=/${locale}/dashboard`} />;
   }
 
   return (

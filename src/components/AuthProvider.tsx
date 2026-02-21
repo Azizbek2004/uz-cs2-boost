@@ -4,6 +4,7 @@ import { useConvexAuth } from "convex/react";
 import { useQuery, useMutation } from "convex/react";
 import { api } from "../../convex/_generated/api";
 import { useAuthActions } from "@convex-dev/auth/react";
+import { useLocale } from "next-intl";
 
 interface User {
   _id: string;
@@ -43,9 +44,11 @@ export function useAuth() {
     // Managed by components directly calling signIn from @convex-dev/auth/react
   };
 
+  const locale = useLocale();
+
   const logout = async () => {
     await signOut();
-    window.location.href = "/";
+    window.location.href = `/${locale}`;
   };
 
   const updateUser = async (updates: Partial<User>) => {

@@ -21,6 +21,7 @@ import {
   IoWarningOutline,
   IoCheckmarkCircleOutline,
 } from "react-icons/io5";
+import { useLocale } from "next-intl";
 
 const CS2_SERVERS = [
   { name: "Stockholm (EU)", region: "EU", baseLatency: 60, routingHops: 12 },
@@ -52,7 +53,9 @@ export default function AdvancedDiagnosticsPage() {
   >([]);
   const [selectedServer, setSelectedServer] = useState(CS2_SERVERS[0].name);
 
-  if (!user) return <meta httpEquiv="refresh" content="0;url=/auth" />;
+  const locale = useLocale();
+
+  if (!user) return <meta httpEquiv="refresh" content={`0;url=/${locale}/auth`} />;
 
   const runScan = useCallback(async () => {
     playReload();

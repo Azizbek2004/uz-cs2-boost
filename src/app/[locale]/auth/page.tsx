@@ -6,7 +6,7 @@ import { useAuth } from "@/components/AuthProvider";
 import { useAuthActions } from "@convex-dev/auth/react";
 import { useAudio } from "@/components/AudioProvider";
 import VideoBackground from "@/components/VideoBackground";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 
 export default function AuthPage() {
   const [isLogin, setIsLogin] = useState(true);
@@ -18,6 +18,7 @@ export default function AuthPage() {
   const { playClick, playVictory, playError } = useAudio();
   const { signIn } = useAuthActions();
   const t = useTranslations("Auth");
+  const locale = useLocale();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -49,7 +50,7 @@ export default function AuthPage() {
 
       // The Convex provider will update, triggering a redirect in the layout or component if needed.
       // But we can eagerly redirect.
-      window.location.href = "/dashboard";
+      window.location.href = `/${locale}/dashboard`;
     } catch (err: any) {
       setError(err?.message || t("errorGeneric"));
       playError();

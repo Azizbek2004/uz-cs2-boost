@@ -16,6 +16,7 @@ import {
   IoVolumeMuteOutline,
   IoColorPaletteOutline,
 } from "react-icons/io5";
+import { useLocale } from "next-intl";
 
 export default function ProfilePage() {
   const { user, updateUser, logout } = useAuth();
@@ -30,7 +31,9 @@ export default function ProfilePage() {
   const [isp, setIsp] = useState(user?.isp || "");
   const [city, setCity] = useState(user?.city || "Tashkent");
 
-  if (!user) return <meta httpEquiv="refresh" content="0;url=/auth" />;
+  const locale = useLocale();
+
+  if (!user) return <meta httpEquiv="refresh" content={`0;url=/${locale}/auth`} />;
 
   const handleSaveSettings = () => {
     playVictory();
@@ -428,7 +431,7 @@ export default function ProfilePage() {
                 onClick={() => {
                   playClick();
                   logout();
-                  window.location.href = "/";
+                  window.location.href = `/${locale}`;
                 }}
                 style={{ color: "#ff1744" }}
               >
