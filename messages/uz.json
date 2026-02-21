@@ -1,0 +1,17 @@
+{
+    "HomePage": {
+        "title": "Xush kelibsiz",
+        "subtitle": "Sizning raqobatbardosh panelingiz — natijalarni kuzating va o'yiningizni optimallashtiring.",
+        "getStarted": "Bepul boshlang",
+        "signIn": "Kirish"
+    },
+    "Navigation": {
+        "dashboard": "Boshqaruv paneli",
+        "pingBooster": "Ping Boster",
+        "jitter": "Jitter tahlili",
+        "spray": "Spray Simulyatori",
+        "community": "Hamjamiyat",
+        "academy": "Akademiya",
+        "profile": "Profil"
+    }
+}

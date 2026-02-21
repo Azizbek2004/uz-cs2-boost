@@ -1,0 +1,17 @@
+{
+    "HomePage": {
+        "title": "Welcome back",
+        "subtitle": "Your competitive dashboard — track performance and optimize your game.",
+        "getStarted": "Get Started Free",
+        "signIn": "Sign In"
+    },
+    "Navigation": {
+        "dashboard": "Dashboard",
+        "pingBooster": "Ping Booster",
+        "jitter": "Jitter Diagnostic",
+        "spray": "Spray Simulator",
+        "community": "Community",
+        "academy": "Academy",
+        "profile": "Profile"
+    }
+}
