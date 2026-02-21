@@ -4,8 +4,8 @@ import createNextIntlPlugin from "next-intl/plugin";
 const withNextIntl = createNextIntlPlugin();
 
 const nextConfig: NextConfig = {
-  // Exclude convex server files from client bundling
-  serverExternalPackages: ["convex"],
+  // Let Next.js handle convex bundling naturally
+  transpilePackages: ["convex", "@convex-dev/auth"],
   // Image optimization
   images: {
     formats: ["image/avif", "image/webp"],
