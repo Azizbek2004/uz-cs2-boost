@@ -80,5 +80,29 @@
         "errorMissingName": "Name is required for sign up",
         "errorGeneric": "Invalid credentials or sign-up failed. Please try again.",
         "errorOauthNotConfigured": "OAuth not yet configured. Please use email/password."
+    },
+    "SkinsPage": {
+        "title": "SKINS CATALOG",
+        "subtitle": "Browse, customize, and save your dream loadout.",
+        "categories": "Categories",
+        "all": "All Weapons",
+        "rifles": "Rifles",
+        "snipers": "Snipers",
+        "pistols": "Pistols",
+        "smgs": "SMGs",
+        "heavy": "Heavy",
+        "knives": "Knives",
+        "gloves": "Gloves",
+        "searchPlaceholder": "Search skins...",
+        "skinDetails": "Skin Details",
+        "floatValue": "Float Value",
+        "patternSeed": "Pattern Seed",
+        "paintIndex": "Paint Index",
+        "weaponId": "Weapon ID",
+        "saveToLoadout": "Save to Loadout",
+        "saved": "Saved!",
+        "loginToSave": "Sign in to save skins to your loadout.",
+        "yourLoadout": "Your Loadout",
+        "noResults": "No skins found matching your search."
     }
 }

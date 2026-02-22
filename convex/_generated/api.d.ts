@@ -13,11 +13,14 @@ import type * as auth from "../auth.js";
 import type * as faceit from "../faceit.js";
 import type * as http from "../http.js";
 import type * as leaderboards from "../leaderboards.js";
+import type * as loadout from "../loadout.js";
 import type * as pingResults from "../pingResults.js";
 import type * as scrims from "../scrims.js";
 import type * as sprayScores from "../sprayScores.js";
+import type * as stats from "../stats.js";
 import type * as stripe from "../stripe.js";
 import type * as tournaments from "../tournaments.js";
+import type * as training from "../training.js";
 import type * as users from "../users.js";
 
 import type {
@@ -32,11 +35,14 @@ declare const fullApi: ApiFromModules<{
   faceit: typeof faceit;
   http: typeof http;
   leaderboards: typeof leaderboards;
+  loadout: typeof loadout;
   pingResults: typeof pingResults;
   scrims: typeof scrims;
   sprayScores: typeof sprayScores;
+  stats: typeof stats;
   stripe: typeof stripe;
   tournaments: typeof tournaments;
+  training: typeof training;
   users: typeof users;
 }>;
 

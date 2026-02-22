@@ -78,5 +78,29 @@
         "errorMissingName": "Ro'yxatdan o'tish uchun ism majburiy",
         "errorGeneric": "Noto'g'ri ma'lumotlar yoki ro'yxatdan o'tish amalga oshmadi. Qaytadan urinib ko'ring.",
         "errorOauthNotConfigured": "OAuth hali sozlanmagan. Iltimos pochta/paroldan foydalaning."
+    },
+    "SkinsPage": {
+        "title": "SKINLAR KATALOGI",
+        "subtitle": "Ko'rib chiqing, sozlang va o'z loadoutingizni saqlang.",
+        "categories": "Kategoriyalar",
+        "all": "Barcha qurollar",
+        "rifles": "Avtomatlar",
+        "snipers": "Snayperllar",
+        "pistols": "Pistoletlar",
+        "smgs": "Pistolet-pulemyotlar",
+        "heavy": "Og'ir qurollar",
+        "knives": "Pichoqlar",
+        "gloves": "Qo'lqoplar",
+        "searchPlaceholder": "Skinlarni qidirish...",
+        "skinDetails": "Skin tafsilotlari",
+        "floatValue": "Float qiymati",
+        "patternSeed": "Naqsh urug'i",
+        "paintIndex": "Bo'yoq indeksi",
+        "weaponId": "Qurol ID",
+        "saveToLoadout": "Loadoutga saqlash",
+        "saved": "Saqlandi!",
+        "loginToSave": "Skinlarni saqlash uchun tizimga kiring.",
+        "yourLoadout": "Sizning loadoutingiz",
+        "noResults": "Qidiruvga mos skinlar topilmadi."
     }
 }

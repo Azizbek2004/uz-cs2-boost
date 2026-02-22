@@ -56,6 +56,17 @@ export const getById = query({
     },
 });
 
+// Get user by Steam ID (used by the CS2 game server HTTP endpoint)
+export const getBySteamId = query({
+    args: { steamId: v.string() },
+    handler: async (ctx, args) => {
+        return await ctx.db
+            .query("users")
+            .withIndex("by_steamId", (q) => q.eq("steamId", args.steamId))
+            .first();
+    },
+});
+
 // Create new user
 export const create = mutation({
     args: {

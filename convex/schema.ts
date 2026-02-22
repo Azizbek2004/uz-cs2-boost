@@ -47,6 +47,25 @@ export default defineSchema({
         gameSense: v.number(),
       })
     ),
+
+    // Skin loadout (Milestone 2 + Skin Pipeline)
+    savedLoadout: v.optional(v.array(v.object({
+      weaponId: v.string(),       // e.g. "weapon_ak47"
+      paintIndex: v.number(),     // CS2 paint kit ID
+      seed: v.number(),           // Pattern seed (0-999)
+      wear: v.number(),           // Float value (0.0 - 1.0)
+      statTrak: v.optional(v.boolean()),
+      nameTag: v.optional(v.string()),
+    }))),
+
+    // Cached stats from FACEIT / Steam APIs (Milestone 4)
+    cachedStats: v.optional(v.object({
+      elo: v.optional(v.number()),
+      level: v.optional(v.number()),
+      winRate: v.optional(v.number()),
+      kdRatio: v.optional(v.number()),
+      lastUpdated: v.number(),
+    })),
   })
     .index("by_email", ["email"])
     .index("by_steamId", ["steamId"])
@@ -154,4 +173,26 @@ export default defineSchema({
     ),
     createdAt: v.number(),
   }).index("by_status", ["status"]),
+
+  skins: defineTable({
+    name: v.string(),             // e.g. "Dragon Lore"
+    weapon: v.string(),           // e.g. "AWP"
+    weaponId: v.string(),         // e.g. "weapon_awp"
+    rarity: v.string(),           // e.g. "Covert", "Classified"
+    paintIndex: v.number(),
+    imageSlug: v.string(),        // Used to build CDN URL
+    minFloat: v.number(),
+    maxFloat: v.number(),
+  }).index("by_weapon", ["weaponId"]),
+
+  trainingRooms: defineTable({
+    userId: v.id("users"),
+    status: v.string(),           // "provisioning" | "active" | "stopped" | "error"
+    serverPort: v.optional(v.number()),
+    mapName: v.string(),
+    configName: v.string(),       // e.g. "training.cfg"
+    startedAt: v.number(),
+    stoppedAt: v.optional(v.number()),
+    rconPassword: v.optional(v.string()),
+  }).index("by_user", ["userId"]),
 });
